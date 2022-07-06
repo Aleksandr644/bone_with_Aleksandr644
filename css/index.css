@@ -1,0 +1,118 @@
+#background{
+    width:600px;
+    height:600px;
+    background:rgb(0,100,0);
+}
+#enemy{
+	position: absolute;
+	top: 20px;
+	left: 240px;
+	
+}
+#img_enemy{
+	width: 140px;
+	height: 100px;
+}
+#player{
+	position: absolute;
+	top: 480px;
+	left: 220px;
+	
+}
+#img_player{
+	width: 140px;
+	height: 100px;
+}
+#text_player{
+	box-sizing: border-box;
+	background-color: white;
+	position: absolute;
+	top: 380px;
+	left: 390px;
+	width: 180px;
+	height: 200px;
+	border: 2px solid black;
+}
+#text_enemy{
+	box-sizing: border-box;
+	background-color: white;
+	position: absolute;
+	top: 20px;
+	left: 30px;
+	width: 180px;
+	height: 200px;
+	border: 2px solid black;
+}
+#zone_enemy{
+	position: absolute;
+	width: 205px;
+	height: 330px;
+	top: 20px;
+	left: 385px;
+	border: 1px solid black;
+}
+#zone_player{
+	position: absolute;
+	width: 205px;
+	height: 330px;
+	top: 250px;
+	left: 10px;
+	border: 1px solid black;
+	
+
+}
+#name_enemy{
+	text-align: center;
+	width: 140px;
+	position: absolute;
+	top: 120px;
+	left: 240px;	
+	word-wrap: break-word;
+}
+#name_player{
+	text-align: center;
+	width: 140px;
+	position: absolute;
+	top: 430px;
+	left: 220px;
+	word-wrap: break-word;
+}
+#at_stake{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	position:absolute;
+	top: 250px;
+	left: 220px;
+	width: 160px;
+	height: 100px;
+}
+#gold_enemy{
+	text-align: center;
+	width: 180px;
+	position: absolute;
+	top: 210px;
+	left: 30px;	
+	word-wrap: break-word;
+}
+#gold_player{
+	text-align: center;
+	width: 180px;
+	position: absolute;
+	top: 340px;
+	left: 390px;	
+	word-wrap: break-word;
+}
+#cup_enemy{
+	position: absolute;
+	width: 160px;
+	height: 100px;
+	top: 150px;
+	left: 220px;
+}
+#cup_player{
+	position: absolute;
+	width: 160px;
+	height: 100px;
+	top: 350px;
+	left: 220px;
