@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game on Canvas</title>
     <link rel="stylesheet" href="css/index.css">
+    <script  src="js/main.js" defer></script>
 </head>
 <body>        
     <div id="background">
         <div id="enemy"><img id="img_enemy" src="img/Bivaliy.png"></div>
         <div id="player"><img id="img_player" src="img/player.png"></div>
-        <div id="text_enemy"><canvas id="canvas_enemy"></canvas></div>
-        <div id="text_player"><canvas id="canvas_player"></canvas></div>
-        <div id="zone_enemy"><canvas id="bone_enemy"></canvas></div>
-        <div id="zone_player"><canvas id="bone_player"></canvas></div>
+        <canvas id="canvas_enemy" width=180 height=200></canvas>
+        <canvas id="canvas_player" width=180 height=200></canvas>
+        <canvas id="bone_enemy" width=205 height=330></canvas>
+        <canvas id="bone_player" width=205 height=330></canvas>
         <div id="hand_enemy"><canvas id="cup_enemy"></canvas></div>
         <div id="hand_player"><canvas id="cup_player"></canvas></div>
         <p id="name_enemy">Bivaliy</p>

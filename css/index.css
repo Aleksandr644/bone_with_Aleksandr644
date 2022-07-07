@@ -23,7 +23,7 @@
 	width: 140px;
 	height: 100px;
 }
-#text_player{
+#canvas_player{
 	box-sizing: border-box;
 	background-color: white;
 	position: absolute;
@@ -33,7 +33,7 @@
 	height: 200px;
 	border: 2px solid black;
 }
-#text_enemy{
+#canvas_enemy{
 	box-sizing: border-box;
 	background-color: white;
 	position: absolute;
@@ -43,7 +43,7 @@
 	height: 200px;
 	border: 2px solid black;
 }
-#zone_enemy{
+#bone_enemy{
 	position: absolute;
 	width: 205px;
 	height: 330px;
@@ -51,7 +51,7 @@
 	left: 385px;
 	border: 1px solid black;
 }
-#zone_player{
+#bone_player{
 	position: absolute;
 	width: 205px;
 	height: 330px;
