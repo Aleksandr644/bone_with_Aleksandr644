@@ -38,23 +38,26 @@ for(let i = 1; i < 8; i++){
 	}
 }
 */
-/*boneTwo.onload = function(){
+let randomBone = randomFiveArea(boneEnemy.width, boneEnemy.height);
+console.log(randomBone);
+boneTwo.onload = function(){
 	for(i = 0; i < 5; i++){
-		contextEnemy.drawImage(boneArr[randomInteger(0,5)], {0,0});
-		contextPlayer.drawImage(boneArr[randomInteger(0,5)], subArea[i].posX, subArea[i].posY);
+		contextEnemy.drawImage(boneArr[randomInteger(0,5)], randomBone[i][0], randomBone[i][1]);
+		contextPlayer.drawImage(boneArr[randomInteger(0,5)], randomBone[i][0], randomBone[i][1]);
 	}
-}*/
-console.log(randomFiveArea(boneEnemy.width, boneEnemy.height))
+}
+
 function randomInteger(min, max){
 	return Math.floor(Math.random() * max + 1) + min;
 }
 function randomFiveArea(width, height){
 	let fiveArea = [];
 	while(fiveArea.length < 5){
-		fiveArea.push([randomInteger(0, width), randomInteger(0,height)]);
+		fiveArea.push([randomInteger(0, width - 60), randomInteger(0,height - 60)]);
 		for(let i = 0; i < fiveArea.length -1; i++){
 			if(fiveArea[i][0] < fiveArea[fiveArea.length-1][0] && fiveArea[i][0] + 60 > fiveArea[fiveArea.length-1][0]||fiveArea[i][1] < fiveArea[fiveArea.length-1][1] && fiveArea[i][1] + 60 > fiveArea[fiveArea.length-1][1]){
 				fiveArea.pop();
+				console.log("delete");
 				break;
 			}
 		}
