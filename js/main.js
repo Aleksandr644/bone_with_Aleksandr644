@@ -44,15 +44,19 @@ for(let i = 1; i < 8; i++){
 		contextPlayer.drawImage(boneArr[randomInteger(0,5)], subArea[i].posX, subArea[i].posY);
 	}
 }*/
+console.log(randomFiveArea(boneEnemy.width, boneEnemy.height))
 function randomInteger(min, max){
 	return Math.floor(Math.random() * max + 1) + min;
 }
 function randomFiveArea(width, height){
 	let fiveArea = [];
 	while(fiveArea.length < 5){
-		fiveArea.push([randomInteger(width,height), randomInteger(width,height)]);
-		for(let i = 0; i < fiveArea.length; i++){
-			
+		fiveArea.push([randomInteger(0, width), randomInteger(0,height)]);
+		for(let i = 0; i < fiveArea.length -1; i++){
+			if(fiveArea[i][0] < fiveArea[fiveArea.length-1][0] && fiveArea[i][0] + 60 > fiveArea[fiveArea.length-1][0]||fiveArea[i][1] < fiveArea[fiveArea.length-1][1] && fiveArea[i][1] + 60 > fiveArea[fiveArea.length-1][1]){
+				fiveArea.pop();
+				break;
+			}
 		}
 	}
 	return fiveArea;
