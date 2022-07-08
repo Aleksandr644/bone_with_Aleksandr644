@@ -1,8 +1,14 @@
-let boneEnemy = document.getElementById("bone_enemy");
-let contextEnemy = boneEnemy.getContext("2d");
-let bonePlayer = document.getElementById("bone_player");
-let contextPlayer = bonePlayer.getContext("2d");
+let elemEnemy = document.getElementById("bone_enemy");
+let contextEnemy = elemEnemy.getContext("2d");
+let elemPlayer = document.getElementById("bone_player");
+let contextPlayer = elemPlayer.getContext("2d");
+/*bone_enemy.onclick = function(){
+		alert("click");
+}*/
 
+function randomInteger(min, max){
+	return Math.floor(Math.random() * max + 1) + min;
+}
 
 let boneOne = new Image();
 boneOne.src = "img/one.png";
@@ -22,45 +28,50 @@ boneFive.src = "img/five.png";
 let boneSix = new Image();
 boneSix.src = "img/six.png";
 
-//let sizeArea = {width: 205, height: 330};
-let boneArr = [boneOne, boneTwo, boneThree, boneFour, boneFive, boneSix];
-/*let sizeSubArea = {width: 68, height: 66, posX: 0, posY: 0};
-let subArea = [];
-subArea[0] = Object.assign({}, sizeSubArea);
-
-for(let i = 1; i < 8; i++){
-	subArea.push(Object.assign({}, sizeSubArea));
-	subArea[i].posX = sizeSubArea.width + subArea[i-1].posX;
-	subArea[i].posY = subArea[i-1].posY;
-	if(subArea[i].posX >= sizeArea.width){
-		subArea[i].posX = 0;
-		subArea[i].posY = sizeSubArea.height + subArea[i-1].posY;
-	}
-}
-*/
-let randomBone = randomFiveArea(boneEnemy.width, boneEnemy.height);
-console.log(randomBone);
-boneTwo.onload = function(){
-	for(i = 0; i < 5; i++){
-		contextEnemy.drawImage(boneArr[randomInteger(0,5)], randomBone[i][0], randomBone[i][1]);
-		contextPlayer.drawImage(boneArr[randomInteger(0,5)], randomBone[i][0], randomBone[i][1]);
-	}
+class Bone{
+    constructor(posX, posY, width = 60, height = 60){
+	    this.value = randomInteger(0,5);
+		this.width = width;
+		this.height = height;
+		this.up = posY;
+		this.bottom = this.up + this.height;
+		this.left = posX;
+		this.right = this.left + this.width;
+		
+    }
+    objectTouch(obj){
+		
+		if(this.up <= obj.up && this.bottom >= obj.up || this.up <= obj.bottom && this.bottom >= obj.bottom){
+		    if(this.left <= obj.left && this.right >= obj.left || this.left <= obj.right && this.right >= obj.right){
+				return true;
+			}
+		}		
+		return false;		
+    }
 }
 
-function randomInteger(min, max){
-	return Math.floor(Math.random() * max + 1) + min;
-}
-function randomFiveArea(width, height){
-	let fiveArea = [];
-	while(fiveArea.length < 5){
-		fiveArea.push([randomInteger(0, width - 60), randomInteger(0,height - 60)]);
-		for(let i = 0; i < fiveArea.length -1; i++){
-			if(fiveArea[i][0] < fiveArea[fiveArea.length-1][0] && fiveArea[i][0] + 60 > fiveArea[fiveArea.length-1][0]||fiveArea[i][1] < fiveArea[fiveArea.length-1][1] && fiveArea[i][1] + 60 > fiveArea[fiveArea.length-1][1]){
-				fiveArea.pop();
-				console.log("delete");
+function randomFiveBone(width, height){
+	let fiveBone = [];
+	while(fiveBone.length < 5){
+		let bone = new Bone(randomInteger(0, width), randomInteger(0, height));
+		fiveBone.push(Object.assign({}, bone));
+		for(let i=0;i < fiveBone.length -1; i++){
+			if(bone.objectTouch(fiveBone[i])){
+				fiveBone.pop();
 				break;
 			}
 		}
 	}
-	return fiveArea;
+	return fiveBone;
+}
+
+let boneArr = [boneOne, boneTwo, boneThree, boneFour, boneFive, boneSix];
+
+onload = function(){
+	let boneEnemy = randomFiveBone(elemEnemy.width - 60, elemEnemy.height - 60);
+	let bonePlayer = randomFiveBone(elemPlayer.width - 60, elemPlayer.height - 60);
+	for(i = 0; i < 5; i++){
+		contextEnemy.drawImage(boneArr[boneEnemy[i].value], boneEnemy[i].left, boneEnemy[i].up);
+		contextPlayer.drawImage(boneArr[bonePlayer[i].value], bonePlayer[i].left, bonePlayer[i].up);
+	}
 }
