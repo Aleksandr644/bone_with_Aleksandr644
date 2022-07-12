@@ -23,3 +23,10 @@ document.querySelector("#input_button").onclick = function(){
 	input_text.value = "";
 	console.log("вставка текста");
 }
+const answerEnemy = () => {
+	let text_form = document.querySelector("output_form").innerHTML;
+	if(text_form.lastIndexOf(document.querySelector("#name_player")) < text_form.lastIndexOf(document.querySelector("#name_enemy"))){
+		
+	}
+}
+document.querySelector("#output_form").addEventListener("change",answerEnemy());
