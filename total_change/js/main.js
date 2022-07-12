@@ -11,6 +11,12 @@ const output_text = (name, text) => {
 	}
 	console.log(countElement(text_form.innerHTML));
 }
+document.addEventListener("keydown", function(event){
+	if(event.keyCode == 13){
+		event.preventDefault();
+		document.querySelector("#input_button").click();
+	}
+});
 document.querySelector("#input_button").onclick = function(){
 	let input_text = document.querySelector("#input_form");
 	output_text(document.querySelector("#name_player").innerHTML, input_text.value);
