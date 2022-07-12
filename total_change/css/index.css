@@ -1,0 +1,79 @@
+#background{
+	float: left;
+    width:600px;
+    height:600px;
+    background:rgb(0,100,0);
+}
+#enemy{
+	position: absolute;
+	top: 20px;
+	left: 240px;
+	
+}
+#img_enemy{
+	width: 140px;
+	height: 100px;
+}
+#player{
+	position: absolute;
+	top: 480px;
+	left: 220px;
+	
+}
+#img_player{
+	width: 140px;
+	height: 100px;
+}
+#name_enemy{
+	text-align: center;
+	width: 140px;
+	position: absolute;
+	top: 120px;
+	left: 240px;	
+	word-wrap: break-word;
+}
+#name_player{
+	text-align: center;
+	width: 140px;
+	position: absolute;
+	top: 430px;
+	left: 220px;
+	word-wrap: break-word;
+}
+#at_stake{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	position:absolute;
+	top: 250px;
+	left: 220px;
+	width: 160px;
+	height: 100px;
+}
+#gold_enemy{
+	text-align: center;
+	width: 180px;
+	position: absolute;
+	top: 210px;
+	left: 30px;	
+	word-wrap: break-word;
+}
+#gold_player{
+	text-align: center;
+	width: 180px;
+	position: absolute;
+	top: 340px;
+	left: 390px;	
+	word-wrap: break-word;
+}
+#chat{
+	float: right;
+	width: 250px;
+	height: 600px;
+}
+#output_form{
+	border: 5px;
+	width:250px;
+	height:579px;
+	word-wrap: break-word;
+}

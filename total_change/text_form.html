@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text_form</title>
+</head>
+<body>
+	<div class="text_area1">
+		<textarea id="text1"></textarea>
+	</div>
+	<div class="text_area2">
+		<textarea id="text2"></textarea>
+	</div>
+	<div id="result1"></div>
+	<div id="result2"></div>
+	<script type="text/javascript">
+		function text(input, output){
+			var txtArea = document.getElementById(input);
+			txtArea.addEventListener("change", function(){
+				var div = document.getElementById(output);
+				div.innerHTML = txtArea.value;
+			})
+		}
+		text("text1", "result1");
+		text("text2", "result2");
+	</script>
+</body>
+</html>
