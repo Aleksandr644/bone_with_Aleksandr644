@@ -42,14 +42,15 @@
 }
 #at_stake{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 	position:absolute;
 	top: 250px;
 	left: 220px;
 	width: 160px;
 	height: 100px;
 }
+
 #gold_enemy{
 	text-align: center;
 	width: 180px;

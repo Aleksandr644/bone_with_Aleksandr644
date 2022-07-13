@@ -1,3 +1,30 @@
+var status_game = 1;
+/* status_game = 0 Приветствие.
+ * status_game = 1 ожидание ввода имени.
+ * status_game = 2 Займ, ставки.
+ * status_game = 3 Бросок кубиков.
+ * status_game = 4 Переброс кубиков.
+ * status_game = 5 Определение победителя. затем 1 или конец, возвращение долга.
+ */
+var player_text = "";
+var enemy_text = "";
+var at_stake = 0;
+var gold_enemy = 10000;
+var gold_player = 0;
+var debt = 0;
+var player = document.querySelector("#name_player").innerHTML;
+var enemy = document.querySelector("#name_enemy").innerHTML;
+
+const setGoldPlayer = () => {
+	 document.querySelector("#gold_player").innerHTML = "<span style='color:gold'>GOLD:</span> <span style='color:white'>" + gold_player + "</span>";
+}
+const setGoldEnemy = () => {
+	 document.querySelector("#gold_enemy").innerHTML = "<span style='color:gold'>GOLD:</span> <span style='color:white'>" + gold_enemy + "</span>";
+}
+const setAtStake = () => {
+	 document.querySelector("#at_stake").innerHTML = "<span style='color:gold'>At stake: </span>"+"<p style='color:white'>" + at_stake +"</p>";
+}
+
 const countElement = (text, elem) => {
 	console.log("подсчет");
 	return text.split(elem).length -1;
@@ -19,14 +46,96 @@ document.addEventListener("keydown", function(event){
 });
 document.querySelector("#input_button").onclick = function(){
 	let input_text = document.querySelector("#input_form");
-	output_text(document.querySelector("#name_player").innerHTML, input_text.value);
+	player_text = input_text.value;
+	output_text(player, player_text);
 	input_text.value = "";
 	console.log("вставка текста");
+	answerEnemy();
 }
 const answerEnemy = () => {
-	let text_form = document.querySelector("output_form").innerHTML;
-	if(text_form.lastIndexOf(document.querySelector("#name_player")) < text_form.lastIndexOf(document.querySelector("#name_enemy"))){
+	enemy_text = '';
+	if(status_game == 0){
+		if(~player_text.search(/(П|п)рив|(З|з)драв/)){
+		enemy_text = "Привет. Как тебя зовут?";
+		}
+	}
+	if(status_game == 1){
+		player = '<span style=color: Cyan;">'player_text'</span>'
+	}
+	if(status_game == 2){
+		if(~player_text.search(/(П|п)рив|(З|з)драв/)){
+		enemy_text = "Привет " + player + " еще раз!";
+	    }
+	}
+	if(status_game == 3){
+		if(~player_text.search(/(П|п)рив|(З|з)драв/)){
+		enemy_text = "Привет " + player + " еще раз!";
+	    }	
+	}
+	if(status_game == 4){
+		if(~player_text.search(/(П|п)рив|(З|з)драв/)){
+		enemy_text = "Привет " + player + " еще раз!";
+	    }	
+	}
+	if(status_game == 5){
+		if(~player_text.search(/(П|п)рив|(З|з)драв/)){
+		enemy_text = "Привет " + player + " еще раз!";
+	    }	
+	}
+	
+	if(~player_text.search(/((З|з)айм|(Д|д)олг)/)){
+		if(enemy_text != ""){
+			enemy_text += ". ";
+		}
+		let numb = Number(player_text.match(/\d+/));
+		if(!numb){
+			enemy_text = "Ты не написал сумму";
+		}
+		else if(numb && numb < gold_enemy){
+			enemy_text += "Конечно я могу занять "+ numb +". Но не забудь отдать!";
+			gold_enemy -= numb;
+			gold_player += numb;
+			debt += numb;
+	    }
+	    else{
+			enemy_text += 'Извини, но у меня нет такой возможности.';
+		}
+	}
+	if(~player_text.search(/((О|о)тда|(В|в)озвращ)/)){
+		let numb = Number(player_text.match(/\d+/));
+		if(numb && debt >= numb && numb <= gold_player){
+			gold_enemy += numb;
+			gold_player -= numb;
+			debt -= numb;
+			enemy_text = "Долг платежом красен, а займ отдачею.";
+		}
+		else if(numb){
+			if(numb < debt){
+				enemy_text = "Ты должен меньше, а чужого мне не надо!";
+			}
+			else{
+				enemy_text = "Но у тебя нет такой суммы!!!";
+			}
+		}
+		else{
+			enemy_text = "Ты не написал сумму";
+		}
+	}
+	if(~player_text.search(/(Д|д)авай|(Д|д)а\s/)){
+		if(gold_player < 1){
+			enemy_text = "Но у тебя же нет золота! Попробуй у меня занять.";
+		}
 		
 	}
+	if(enemy_text == "Привет"){
+		enemy_text += "! Будем играть?"
+	}
+	if(enemy_text == ""){
+		enemy_text = "Я тебя не понимаю, попробуй перефразировать."
+	}
+	
+	setGoldPlayer();
+	setGoldEnemy();
+	setAtStake();
+	output_text(enemy, enemy_text);
 }
-document.querySelector("#output_form").addEventListener("change",answerEnemy());
